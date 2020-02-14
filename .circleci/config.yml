@@ -2,6 +2,3 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2.1
- orbs: 
-   sfdx: circleci/salesforce-sfdx@1.0.2
-
