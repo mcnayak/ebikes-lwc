@@ -1,0 +1,23 @@
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2.1
+ orbs:
+   sfdx: circleci/salesforce-sfdx@1.0.2
+ jobs:
+   install_authenticate:
+     executor: sfdx/default
+     steps:
+       - checkout
+       - sfdx/install
+       - sfdx/auth:
+           defaultusername: mnayak@devhub.org 
+       - run:
+           name: Run your SFDX commands here
+           command: >
+             echo "You now have access to the sfdx cli and may execute commands against it. "
+ workflows:
+   basic-test:
+     jobs:
+       - install_authenticate
+
