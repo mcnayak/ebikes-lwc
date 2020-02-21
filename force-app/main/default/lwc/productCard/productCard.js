@@ -32,7 +32,7 @@ const fields = [
  */
 export default class ProductCard extends NavigationMixin(LightningElement) {
     /** Id of Product__c to display. */
-    recordId;
+    recordId = 'a031700000EhDthAAF';
 
     @wire(CurrentPageReference) pageRef;
 

@@ -1,0 +1,5 @@
+# This is a compressed archive LWC Playground
+# https://developer.salesforce.com/docs/component-library/tools/playground
+VERSION=1
+PROJECT=Basic Avatar
+DESCRIPTION=Avatar with the default size and variant.

@@ -7,13 +7,14 @@ import BILLING_POSTAL_CODE from '@salesforce/schema/Account.BillingPostalCode';
 import BILLING_STATE from '@salesforce/schema/Account.BillingState';
 import BILLING_STREET from '@salesforce/schema/Account.BillingStreet';
 
-const fields = [
+ const fields = [
     BILLING_CITY,
     BILLING_COUNTRY,
     BILLING_POSTAL_CODE,
     BILLING_STATE,
     BILLING_STREET
-];
+ ];
+
 
 export default class PropertyMap extends LightningElement {
     @api recordId;
