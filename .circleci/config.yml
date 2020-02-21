@@ -1,6 +1,3 @@
 version: 2.1
-<<<<<<< HEAD
  orbs:
    sfdx: circleci/salesforce-sfdx@1.0.2
-=======
->>>>>>> e9f863aa52f2022c829803e4bf2e118170cca29a
