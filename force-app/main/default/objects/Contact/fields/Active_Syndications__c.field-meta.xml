@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Syndications__c</fullName>
+    <externalId>false</externalId>
+    <label>Active Syndications</label>
+    <summarizedField>Show__c.Active_Syndications__c</summarizedField>
+    <summaryForeignKey>Show__c.Host__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <type>Summary</type>
+</CustomField>

@@ -1,7 +1,11 @@
 import { LightningElement, track } from 'lwc';
-import { subscribe, unsubscribe, onError, setDebugFlag, isEmpEnabled } from 'lightning/empApi';
-
-
+import {
+    subscribe,
+    unsubscribe,
+    onError,
+    setDebugFlag,
+    isEmpEnabled
+} from 'lightning/empApi';
 
 export default class EmpApiLWC extends LightningElement {
     @track channelName = '/event/Test__e';
@@ -26,7 +30,10 @@ export default class EmpApiLWC extends LightningElement {
         // Invoke subscribe method of empApi. Pass reference to messageCallback
         subscribe(this.channelName, -1, messageCallback).then(response => {
             // Response contains the subscription information on successful subscribe call
-            console.log('Successfully subscribed to : ', JSON.stringify(response.channel));
+            console.log(
+                'Successfully subscribed to : ',
+                JSON.stringify(response.channel)
+            );
             this.subscription = response;
             this.toggleSubscribeButton(true);
         });
@@ -51,7 +58,7 @@ export default class EmpApiLWC extends LightningElement {
     registerErrorListener() {
         // Invoke onError empApi method
         onError(error => {
-             console.log('Received error from server: ', JSON.stringify(error));
+            console.log('Received error from server: ', JSON.stringify(error));
             // Error contains the server-side error
         });
     }
