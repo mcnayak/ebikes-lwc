@@ -11,7 +11,8 @@ import TICKER_FIELD from '@salesforce/schema/Account.TickerSymbol';
 
 /** Record fields to load */
 //const fields = [TICKER_FIELD];
-
+const querystring = require('querystring');
+const url = require('url');
 export default class StockSummary extends LightningElement {
     //@track revenue;
     //@track employees;
@@ -34,8 +35,19 @@ export default class StockSummary extends LightningElement {
         return getFieldValue(this.account.data, TICKER_FIELD);
    
     }
+/*
+    var query = querystring.stringify({symbol: 'AAPL'});
+    const requesturl = url.parse(url.format({
+        protocol: 'https',
+        hostname: 'apidojo-yahoo-finance-v1.p.rapidapi.com',
+        pathname: '/stock/v2/get-summary',
+        query: {
+            symbol: AAPL
+        }
+    }));
+*/
+   
 
-    symbol = 'AAPLL'
     connectedCallback() {
        
         fetch ('https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary?symbol=AAPL',
