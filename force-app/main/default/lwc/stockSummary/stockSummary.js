@@ -1,4 +1,4 @@
-import { LightningElement, wire,  api } from 'lwc';
+import { LightningElement, wire,  api, track } from 'lwc';
 import { CurrentPageReference } from 'lightning/navigation';
 import { NavigationMixin } from 'lightning/navigation';
 
@@ -10,12 +10,12 @@ import { getRecord,getFieldValue } from 'lightning/uiRecordApi';
 import TICKER_FIELD from '@salesforce/schema/Account.TickerSymbol';
 
 /** Record fields to load */
-//const fields = [TICKER_FIELD];
-const querystring = require('querystring');
-const url = require('url');
+// const fields = [TICKER_FIELD];
+// const querystring = require('querystring');
+// const url = require('url');
 export default class StockSummary extends LightningElement {
     //@track revenue;
-    //@track employees;
+    @track employees;
     //@track stockprice;
 
     recordId = '0015w000026xyh3AAA';
@@ -65,12 +65,15 @@ export default class StockSummary extends LightningElement {
         }
         ).then(function(response){
             return response.json();
-        }).then(() => {
-            // console.log('%%%%'+JSON.stringify(myJson));
+        }).then((json) => {
+             //console.log('%%%%'+JSON.stringify(json));
+             console.log('%% Profit Margins%% '+JSON.stringify(json.financialData.profitMargins.fmt));
+             console.log('%% Employees %% '+JSON.stringify(json.summaryProfile.fullTimeEmployees));
         }
 
         )
     
     }
+    
     
 }
