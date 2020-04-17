@@ -1,6 +1,8 @@
 import { LightningElement, wire,  api, track } from 'lwc';
 import { CurrentPageReference } from 'lightning/navigation';
+import Stock from  './stock';
 import { NavigationMixin } from 'lightning/navigation';
+// var unirest = require("unirest");
 
 /** Wire adapter to load records, utils to extract values. */
 import { getRecord,getFieldValue } from 'lightning/uiRecordApi';
@@ -9,14 +11,16 @@ import { getRecord,getFieldValue } from 'lightning/uiRecordApi';
 //import ACCOUNT_OBJECT from '@salesforce/schema/Account';
 import TICKER_FIELD from '@salesforce/schema/Account.TickerSymbol';
 
+
 /** Record fields to load */
 // const fields = [TICKER_FIELD];
 // const querystring = require('querystring');
 // const url = require('url');
 export default class StockSummary extends LightningElement {
-    //@track revenue;
-    @track employees;
-    //@track stockprice;
+    @track 
+    Margins;
+    @track 
+    Employees;
 
     recordId = '0015w000026xyh3AAA';
     //@api objectApiName;
@@ -46,8 +50,26 @@ export default class StockSummary extends LightningElement {
         }
     }));
 */
-   
+/*
+var req = unirest("GET", "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary");
 
+req.query({
+	"region": "US",
+	"symbol": "AMRN"
+});
+
+req.headers({
+	"x-rapidapi-host": "apidojo-yahoo-finance-v1.p.rapidapi.com",
+	"x-rapidapi-key": "fed0dc9471msh19edb801e26a30ep1cba77jsn002db7d60898"
+});
+
+
+req.end(function (res) {
+	if (res.error) throw new Error(res.error);
+
+	console.log(res.body);
+});
+*/
     connectedCallback() {
        
         fetch ('https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary?symbol=AAPL',
@@ -62,17 +84,26 @@ export default class StockSummary extends LightningElement {
                      "x-rapidapi-key": "fed0dc9471msh19edb801e26a30ep1cba77jsn002db7d60898"
             },
             "hostname": "apidojo-yahoo-finance-v1.p.rapidapi.com",
+            
         }
         ).then(function(response){
             return response.json();
-        }).then((json) => {
+        }).then((myJson) => {
              //console.log('%%%%'+JSON.stringify(json));
-             console.log('%% Profit Margins%% '+JSON.stringify(json.financialData.profitMargins.fmt));
-             console.log('%% Employees %% '+JSON.stringify(json.summaryProfile.fullTimeEmployees));
+             this.Margins = JSON.stringify(myJson.financialData.profitMargins.fmt);
+             this.Employees = JSON.stringify(myJson.summaryProfile.fullTimeEmployees);
+             //this.profitMargins = new Stock(JSON.stringify(myJson.financialData.profitMargins.fmt),JSON.stringify(myJson.financialData.profitMargins.fmt));
+             //this.stockDetails = new Stock('29','3000');
+             
+             //console.log('%% Profit Margins%% '+JSON.stringify(myJson.financialData.profitMargins.fmt));
+             //console.log('%% Employees %% '+JSON.stringify(myJson.summaryProfile.fullTimeEmployees));
+
         }
 
         )
-    
+        
+        
+        
     }
     
     
