@@ -21,6 +21,8 @@ export default class StockSummary extends LightningElement {
     Margins;
     @track 
     Employees;
+    
+    
 
     recordId = '0015w000026xyh3AAA';
     //@api objectApiName;
@@ -34,9 +36,11 @@ export default class StockSummary extends LightningElement {
     account;
     
     
-    get ticker_symbol() {
+    @api
+    get tickerSymbol() {
         //return this.account.data ? getFieldValue(this.account.data, TICKER_FIELD) : ' ';
         return getFieldValue(this.account.data, TICKER_FIELD);
+        
    
     }
 /*
@@ -71,12 +75,15 @@ req.end(function (res) {
 });
 */
     connectedCallback() {
-       
-        fetch ('https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary?symbol=AAPL',
+        const encodedTicker = 'AAPL'; 
+        
+        fetch (`https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary?symbol=${encodedTicker}`,
+ //       fetch ('https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary?symbol=AAPL',
         // End point URL
         {
             // Request type
             method:"GET",
+            
 
             headers:{// content type
                      "Content-Type": "application/json",
