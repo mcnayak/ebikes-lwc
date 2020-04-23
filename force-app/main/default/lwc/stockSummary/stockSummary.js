@@ -17,14 +17,16 @@ const TICKER_FIELD = ['Account.TickerSymbol'];
 export default class StockSummary extends LightningElement {
     @track     profit_Margins;
     @track     fullTime_Employees;
-    @track     record;
+    @track     yearly_Revenue;
+    @track     yearly_Earnings;
+
     account;
     tick_symbol;
     
 
-    //recordId = '0015w000026xyh3AAA';
+    recordId = '0015w000026xlPcAAI';
     //@api objectApiName;
-    @api recordId;    
+    //@api recordId;    
      
     //accountObject = ACCOUNT_OBJECT;
     //fields = ['TickerSymbol'];
@@ -40,6 +42,8 @@ export default class StockSummary extends LightningElement {
            
             //console.log(this.data); // I want this to be based on the Account Page I am on
         // However if I call this.ticketSymbol property I get undefined.
+        //
+        //fetch (`https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary?symbol=CRM`,
         
         fetch (`https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary?symbol=${this.tick_symbol}`,
         {
@@ -58,12 +62,16 @@ export default class StockSummary extends LightningElement {
         ).then(function(response){
             return response.json();
         }).then((myJson) => {
-             //console.log('%%%%'+JSON.stringify(json));
+             console.log((myJson));
              this.profit_Margins = JSON.stringify(myJson.financialData.profitMargins.fmt);
              this.fullTime_Employees = JSON.stringify(myJson.summaryProfile.fullTimeEmployees);
-           
-             //console.log('%% Profit Margins%% '+JSON.stringify(myJson.financialData.profitMargins.fmt));
-             //console.log('%% Employees %% '+JSON.stringify(myJson.summaryProfile.fullTimeEmployees));
+        //     this.yearly_Earnings = JSON.stringify(myJson.financialsChart.yearly[3].earnings.fmt);
+        //     this.yearly_Revenue = JSON.stringify(myJson.financialsChart.yearly[3].revenue.fmt);
+            
+             console.log('%% Profit Margins%% '+JSON.stringify(myJson.financialData.profitMargins.fmt));
+             console.log('%% Employees %% '+JSON.stringify(myJson.summaryProfile.fullTimeEmployees));
+             //console.log('%% Annual Revenue %% '+JSON.stringify(myJson.earnings.earningsChart.quarterly[1].date));
+
 
         }
 
@@ -79,11 +87,11 @@ export default class StockSummary extends LightningElement {
     }
     //account;
     
-    
+    /*
     @api
     get tickerSymbol() {
          return getFieldValue(this.account.data, TICKER_FIELD);
-    }
+    }*/
 
     /*
     connectedCallback() {

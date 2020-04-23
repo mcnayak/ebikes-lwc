@@ -5,3 +5,5 @@ export default class stock{
 		this._fullTimeEmployees = fullTimeEmployees;
     }
 }
+
+

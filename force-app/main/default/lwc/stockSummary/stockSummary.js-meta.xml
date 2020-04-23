@@ -2,9 +2,11 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>48.0</apiVersion>
     <isExposed>true</isExposed>
+    <masterLabel>Stock Summary</masterLabel>
+    <description>This is Stock Summary Component.</description>
     <targets>
-        <target>lightning_AppPage</target>
-        <target>lightning_RecordPage</target>
-        <target>lightning_HomePage</target>
+        <target>
+            lightning__RecordPage
+        </target>
     </targets>
 </LightningComponentBundle>
