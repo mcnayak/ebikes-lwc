@@ -26,9 +26,9 @@ export default class StockSummary extends LightningElement {
     tick_symbol;
     
 
-    recordId = '0015w000026xlPcAAI';
+    //recordId = '0015w000026xyh3AAA';
     //@api objectApiName;
-    //@api recordId;    
+    @api recordId;    
      
     //accountObject = ACCOUNT_OBJECT;
     //fields = ['TickerSymbol'];
@@ -67,8 +67,6 @@ export default class StockSummary extends LightningElement {
              console.log((myJson));
              this.profit_Margins = JSON.stringify(myJson.financialData.profitMargins.fmt);
              this.fullTime_Employees = JSON.stringify(myJson.summaryProfile.fullTimeEmployees);
-        //     this.yearly_Earnings = JSON.stringify(myJson.financialsChart.yearly[3].earnings.fmt);
-        //     this.yearly_Revenue = JSON.stringify(myJson.financialsChart.yearly[3].revenue.fmt);
              let years = myJson.earnings.financialsChart.yearly.length;
              this.ticker_Symbol = this.tick_symbol;
              this.recent_Quarter = JSON.stringify(myJson.earnings.financialsChart.quarterly[3].date)+JSON.stringify(myJson.earnings.financialsChart.quarterly[3].revenue.fmt);
@@ -78,7 +76,6 @@ export default class StockSummary extends LightningElement {
              console.log(' Profit Margins%% '+JSON.stringify(myJson.financialData.profitMargins.fmt));
              console.log('%% Employees %% '+JSON.stringify(myJson.summaryProfile.fullTimeEmployees));
              console.log('%% Recent Quarter Revenue %% '+JSON.stringify(myJson.earnings.financialsChart.quarterly[3].date)+ ' ' + JSON.stringify(myJson.earnings.financialsChart.quarterly[3].revenue.fmt));
-       //      console.log('%% Q0 Rev %% '+JSON.stringify(myJson.earnings.earningsChart.quarterly[2].revenue.fmt));
              console.log('%% Annual Revenue %% '+ (myJson.earnings.financialsChart.yearly[years-1].revenue.fmt));
              console.log('%% Annual Earnings %% '+ (myJson.earnings.financialsChart.yearly[years-1].earnings.fmt));
 
